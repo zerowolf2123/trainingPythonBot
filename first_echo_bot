@@ -1,0 +1,57 @@
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+# Советую указывать токен в отдельном файле, у меня это config, там же я размещаю там логирование и что то по мелочи
+from echo_update_bot.config import TG_TOKEN
+
+# Настоятельно рекомендую разбивать ваш проект на папки и файлы, так вы повысите читабельность кода
+
+# update принимает обновления из telegram
+def do_start(update: Update, context: CallbackContext):
+    # effective_message - это все сообщения, пересланные, ответы и тд
+    # можно еще использовать message
+    # reply_text - ответ, элемент telegram API
+    update.effective_message.reply_text('''Добро пожаловать.
+Что бы узнать большую информацию нажмите /help''')
+
+
+def do_help(update: Update, context: CallbackContext):
+    update.effective_message.reply_text('На данный момент вам ничего не дуступно')
+
+
+def do_echo(update: Update, context: CallbackContext):
+    # Берет полное имя пользователя из telegram
+    # Можно брать first_name или last_name или id
+    user = update.effective_user.full_name
+    # effective_message.text - берет текст сообщения пользователя, можно брать id сообщения или chat_id - id чата с пользователем
+    # все равно что id пользователя взять
+    text = update.effective_message.text
+    if text.lower() == 'привет' or text.lower() == 'здравствуйте':
+        update.effective_message.reply_text(f'Привет {user}')
+    elif text.lower() == 'пока':
+        update.effective_message.reply_text(f'Пока {user}')
+    else:
+        update.effective_message.reply_text(f'{text}')
+
+
+def main():
+    # Updater принимает ваш токен, его нужно взять у BotFather
+    # Принимает обновления данных из телеграмм
+    updater = Updater(
+        token=TG_TOKEN,
+        use_context=True
+    )
+    # Объявляем обработчик команд (CommandHandler), который реагирует на команду /start и вызывает функцию do_start
+    updater.dispatcher.add_handler(CommandHandler('start', do_start))
+    updater.dispatcher.add_handler(CommandHandler('help', do_help))
+    # Объявляем обработчик сообщений (MessageHandler), с фильтром all
+    # Можно поставить любой фильтр (text, photo ...)
+    updater.dispatcher.add_handler(MessageHandler(Filters.all, do_echo))
+    # Запускает бота
+    updater.start_polling()
+    updater.idle()
+
+
+# Если этот файл запускается первым то компилятор попадает внутрь и запускает бота
+if __name__ == '__main__':
+    # Здесь настоятельно рекомендую настраивать админку (В отдельном файле, а вызывать здесь)
+    main()
