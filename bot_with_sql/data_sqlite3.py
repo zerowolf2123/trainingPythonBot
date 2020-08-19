@@ -44,7 +44,7 @@ def add_subscribers(conn, tg_name: str, user_id: int):
     # Писать именно (user_id, ), иначе sqlite3 не поймет, он глупый
     c.execute("SELECT user_id FROM subscribers WHERE user_id = ?", (user_id, ))
     # Берет первое найденное, есть еще fetchall, если вам нужно взять список данных
-    if c.fetchone() != None:
+    if c.fetchone() is None:
         # Добавляем значения в таблицу
         c.execute("INSERT INTO subscribers(tg_name, user_id) VALUES (?, ?)", (tg_name, user_id))
         conn.commit()
