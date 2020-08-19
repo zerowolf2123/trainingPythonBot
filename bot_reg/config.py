@@ -1,4 +1,4 @@
-TG_TOKEN = '1347447144:AAExu7x9Atuk_FQe0IozXMDa9lzVT8kw2PY'
+TG_TOKEN = '1344744:AExu7x9Atuk_FQe0IozXMDalzVT8kwY'
 
 
 # Проверяет, чтобы введенный возраст был числом и чтобы пользователю не было 50000 или -2314 лет
