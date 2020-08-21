@@ -113,7 +113,7 @@ def update_values(conn, age, name_user):
     conn.commit()
     c.execute('SELECT age FROM first_data_base WHERE name_user LIKE ?', (name_user, ))
     print(c.fetchone()[0])
-    # Like "..%" - значит что возраст заменится у всех, чье имя начинает с T
+    # Like "..%" - значит что возраст заменится у всех, чье имя начинает с A
     # % - шаблон SQL:
     # %ин - ищет слова которые заканчиваются на 'ин'
     # %ин% - ищет слова которые содержат 'ин'
