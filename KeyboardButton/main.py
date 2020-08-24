@@ -1,7 +1,7 @@
 from telegram import Bot, Update, KeyboardButton, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
-TG_TOKEN = '1347447144:AAExu7x9Atuk_FQe0IozXMDa9lzVT8kw2PY'
+TG_TOKEN = '13477144:Axu7x9Atuk_FQe0XMDa9lzVTw2PY'
 # Наши клавиши
 BUTTON_HELPS = 'Помощь'
 
