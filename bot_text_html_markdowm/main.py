@@ -1,7 +1,7 @@
 from telegram import Bot, Update, ParseMode
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
-TG_TOKEN = '1347447144:AAExu7x9Atuk_FQe0IozXMDa9lzVT8kw2PY'
+TG_TOKEN = '1347144:AAExu7x9Atuk_FQe0IozVT8kw2PY'
 
 
 def do_func_text(update: Update, context: CallbackContext):
